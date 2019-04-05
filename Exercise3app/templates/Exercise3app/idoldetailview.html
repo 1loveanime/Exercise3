@@ -1,19 +1,24 @@
 {% extends 'Exercise3app/base.html'%}
 
 {% block content %}
-<div style="padding-left: 20%; padding-right: 20%;">
-	<h2><center>{{idolinfo.nickname }}</center></h2>
+<div class="text-center" style="padding-left: 20%; padding-right: 20%;">
+	{% if idolinfo.profilepicture %}
+		<img style="height: 360px; width: 260px" src="{{ idolinfo.profilepicture.url }}">
+	{% else %}
+		<p>NO IMAGE</p>
+	{% endif %}
+	<h2 style="font-family: fantasy;">{{idolinfo.nickname }}</h2>
 	<p>&nbsp&nbsp&nbsp<i>"{{ idolinfo.aboutme }}"</i></p>
 </div>
 <hr>	
 <table>
 	<tr>
 		<td>First name: </td>
-		<td><strong>{{idolinfo.namefirst }}</strong></td>
+		<td><strong>{{idolinfo.namefirst}}</strong></td>
 	</tr>
 	<tr>
-		<td>Last name:</td> 
-		<td><strong>{{idolinfo.namelast }}</strong></td>
+		<td>Last name: </td> 
+		<td><strong>{{idolinfo.namelast}}</strong></td>
 	</tr>
 	<tr>
 		<td>Middle name: </td>
@@ -21,26 +26,26 @@
 	</tr>
 	<tr>
 		<td>Birthday: </td>
-		<td><strong>{{idolinfo.birthday }}</strong></td>
+		<td><strong>{{idolinfo.birthday}}</strong></td>
 	</tr>
 	<tr>
 		<td>Height: </td>
-		<td><strong>{{idolinfo.height }}CM</strong></td>
+		<td><strong>{{idolinfo.height}}CM</strong></td>
 	</tr>
 	<tr>
 		<td>School: </td>
-		<td><strong>{{idolinfo.school }}</strong></td>
+		<td><strong>{{idolinfo.school}}</strong></td>
 	</tr>
 	<tr>
 		<td>City: </td>
-		<td><strong>{{idolinfo.city }}</strong></td>
+		<td><strong>{{idolinfo.city}}</strong></td>
 	</tr>
 	<tr>
 		<td>Province: </td> 
-		<td><strong>{{idolinfo.province }}</strong></td>
+		<td><strong>{{idolinfo.province}}</strong></td>
 	</tr>
 </table>
-<div style="position: absolute; bottom: 50px;">
+<div class="footer">
 	<a class="btn btn-dark" href="{% url 'welcome' %}" >Go Back to Top 4 List</a>
 	<a class="btn btn-dark" href="{% url 'idol_edit' pk=idolinfo.pk %}">Edit Idol info</a>
 </div>

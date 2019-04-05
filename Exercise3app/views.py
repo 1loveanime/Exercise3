@@ -30,7 +30,7 @@ def idolfulllist(request):
 @login_required
 def idolregister(request):
 	if request.method == 'POST':
-		forms = IdolCreationForm(request.POST)
+		forms = IdolCreationForm(request.POST, request.FILES)
 		if forms.is_valid():
 			forms.save()
 			formskey = forms.save(commit=False)
@@ -43,7 +43,7 @@ def idolregister(request):
 def idol_edit(request, pk):
 	formsinfo = get_object_or_404(IdolDetail, pk=pk)
 	if request.method == 'POST':
-		forms = IdolCreationForm(request.POST, instance=formsinfo)
+		forms = IdolCreationForm(request.POST, request.FILES, instance=formsinfo)
 		if forms.is_valid():
 			forms.save()
 			formskey = forms.save(commit=False)
@@ -63,5 +63,5 @@ def registration(request):
 	return render(request, 'registration/registration.html', {'form' : form})
 
 def welcome(request):
-	idoltoplist = IdolDetail.objects.order_by('-votes')
+	idoltoplist = IdolDetail.objects.order_by('-votes')[0:4]
 	return render(request, 'Exercise3app/welcome.html', {'idoltoplist' : idoltoplist})

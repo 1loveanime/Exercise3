@@ -1,7 +1,7 @@
 {% extends 'Exercise3app/base.html'%}
 
 {% block content %}
-<form method="post">
+<form method="post" enctype="multipart/form-data">
 	{% csrf_token %}
 		<table>
 			<tr>
@@ -57,7 +57,13 @@
 				<td>{{forms.aboutme}}</td>
 				<td>{{forms.aboutme.errors}}</td>
 			</tr>
+			<tr>
+				<td>Profile Picture: </td>
+				<td>{{forms.profilepicture}}</td>
+				<td>{{forms.profilepicture.errors}}</td>
+			</tr>
 		</table>
+	<br>
 	<div class="row">
 		<div class="col-sm-4">
 			<a class="btn btn-dark" href="{% url 'welcome' %}">Go back</a>
@@ -65,4 +71,5 @@
 		</div>
 	</div>
 </form>
+
 {% endblock %}

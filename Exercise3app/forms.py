@@ -11,4 +11,4 @@ class RegistrationForm(UserCreationForm):
 class IdolCreationForm(forms.ModelForm):
 	class Meta:
 		model = IdolDetail
-		exclude = ('age', )
+		exclude = ('', )
