@@ -1,0 +1,29 @@
+{% extends 'Exercise3app/base.html'%}
+
+{% block content %}
+<div class="row">
+	<div class="col-sm-12">
+	<form method="GET" action=".">
+		<input type=text name="search_function" style="width: 92%">
+		<button class="btn btn-dark">Search</button>
+	</form>
+	</div>
+</div>
+<hr>
+<div class="row">
+	<table>
+		{% for idols in idolwholelist %}
+			<tr>
+				<td style="padding-top: 5px">
+					<a href="{% url 'idoldetailview' pk=idols.pk %}">{{idols.namefirst}} ({{idols.nickname}}) {{idols.namemiddle | default_if_none:""}} {{ idols.namelast}}</a>
+				</td>
+			</tr>
+		{% endfor  %}
+	</table>
+</div>
+
+<div style="position: absolute; bottom: 50px;">
+	<a class="btn btn-dark" href="{% url 'welcome' %}">Go Back to Top 4 List</a>
+	<a class="btn btn-dark" href="{% url 'idolregister' %}">Click here to register new Idol</a>
+</div>
+{% endblock %}

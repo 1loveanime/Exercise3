@@ -1,0 +1,68 @@
+{% extends 'Exercise3app/base.html'%}
+
+{% block content %}
+<form method="post">
+	{% csrf_token %}
+		<table>
+			<tr>
+				<td>First Name: </td>
+				<td>{{forms.namefirst}}</td>
+				<td>{{forms.namefirst.errors}}</td>
+			</tr>
+			<tr>
+				<td>Last Name: </td>
+				<td>{{forms.namelast}}</td>
+				<td>{{forms.namelast.errors}}</td>
+			</tr>
+			<tr>
+				<td>Middle Name: </td>
+				<td>{{forms.namemiddle}}</td>
+				<td>{{forms.namemiddle.errors}}</td>
+			</tr>
+			<tr>
+				<td>Nick Name: </td>
+				<td>{{forms.nickname}}</td>
+				<td>{{forms.nickname.errors}}</td>
+			</tr>
+			<tr>
+				<td>Birthday: </td>
+				<td>{{forms.birthday}}</td>
+				<td>{{forms.birthday.errors}}</td>
+			</tr>
+			<tr>
+				<td>Height: </td>
+				<td>{{forms.height}}<small>Please enter in CM</small></td>
+				<td>{{forms.height.errors}}</td>
+			</tr>
+		</table>
+		<hr>
+		<table>		
+			<tr>
+				<td>School: </td>
+				<td>{{forms.school}}</td>
+				<td>{{forms.school.errors}}</td>
+			</tr>
+			<tr>
+				<td>City: </td>
+				<td>{{forms.city}}</td>
+				<td>{{forms.city.errors}}</td>
+			</tr>
+			<tr>
+				<td>Province: </td>
+				<td>{{forms.province}}</td>
+				<td>{{forms.province.errors}}</td>
+			</tr>
+			<tr>
+				<td>About Me: </td>
+				<td>{{forms.aboutme}}</td>
+				<td>{{forms.aboutme.errors}}</td>
+			</tr>
+		</table>
+	<div class="row">
+		<div class="col-sm-4">
+			<a class="btn btn-dark" href="{% url 'welcome' %}">Go back</a>
+			<button class="btn btn-dark" type="submit">Submit</button>
+		</div>
+	</div>
+</form>
+{% endblock %}
