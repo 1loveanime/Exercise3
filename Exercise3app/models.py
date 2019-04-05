@@ -8,6 +8,7 @@ class IdolDetail(models.Model):
 	birthday = models.DateField()
 	city = models.CharField(max_length=20)
 	height = models.PositiveIntegerField(validators=[MaxValueValidator(300)], help_text='Please input in CM')
+	profilepicture = models.ImageField(upload_to='pictures/', default='pictures/default.png')
 	namefirst = models.CharField(max_length=100)
 	namelast = models.CharField(max_length=100)
 	namemiddle = models.CharField(max_length=100, null=True, blank=True)

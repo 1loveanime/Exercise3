@@ -15,12 +15,14 @@ def idoldetailview(request, pk):
 def idolfulllist(request):
 	if 'search_function' in request.GET:
 		search_idol_term = request.GET.get('search_function').split(" ")
-		idolwholelist = IdolDetail.objects.filter(
-			Q(namefirst__icontains=[term for term in search_idol_term]) | 
-			Q(namelast__icontains=[term for term in search_idol_term]) | 
-			Q(namemiddle__icontains=[term for term in search_idol_term]) | 
-			Q(nickname__icontains=[term for term in search_idol_term]))
-		print([term for term in search_idol_term])
+		idolwholelist = IdolDetail.objects.all()
+		for term in search_idol_term:
+			idolwholelist = idolwholelist.filter(
+				Q(namefirst__icontains=term) | 
+				Q(namelast__icontains=term) | 
+				Q(namemiddle__icontains=term) | 
+				Q(nickname__icontains=term))
+		idolwholelist = idolwholelist.distinct()
 	else:
 		idolwholelist = IdolDetail.objects.order_by('namelast')
 	return render(request, 'Exercise3app/idolfulllist.html', {'idolwholelist' : idolwholelist})
