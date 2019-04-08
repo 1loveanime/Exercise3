@@ -1,15 +1,18 @@
+import operator
+
 from .forms import RegistrationForm, IdolCreationForm
 from .models import IdolDetail
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render,  redirect, get_object_or_404
-import operator
+
 
 
 @login_required
 def idoldetailview(request, pk):
 	idolinfo = get_object_or_404(IdolDetail, pk=pk)
 	return render(request, 'Exercise3app/idoldetailview.html', {'idolinfo' : idolinfo})
+
 
 @login_required
 def idolfulllist(request):
@@ -27,6 +30,7 @@ def idolfulllist(request):
 		idolwholelist = IdolDetail.objects.order_by('namelast')
 	return render(request, 'Exercise3app/idolfulllist.html', {'idolwholelist' : idolwholelist})
 
+
 @login_required
 def idolregister(request):
 	if request.method == 'POST':
@@ -38,6 +42,7 @@ def idolregister(request):
 	else:
 		forms = IdolCreationForm()
 	return render(request, 'Exercise3app/idolregister.html', {'forms' : forms})
+
 
 @login_required
 def idol_edit(request, pk):
@@ -52,6 +57,7 @@ def idol_edit(request, pk):
 		forms = IdolCreationForm(instance = formsinfo)
 	return render(request, 'Exercise3app/idolregister.html', {'forms' : forms})
 
+
 def registration(request):
 	if request.method == 'POST':
 		form = RegistrationForm(request.POST)
@@ -61,6 +67,7 @@ def registration(request):
 	else:
 		form = RegistrationForm()
 	return render(request, 'registration/registration.html', {'form' : form})
+
 
 def welcome(request):
 	idoltoplist = IdolDetail.objects.order_by('-votes')[0:4]

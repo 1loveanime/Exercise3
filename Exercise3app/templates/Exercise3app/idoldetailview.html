@@ -10,6 +10,7 @@
 	<h2 style="font-family: fantasy;">{{idolinfo.nickname }}</h2>
 	<p>&nbsp&nbsp&nbsp<i>"{{ idolinfo.aboutme }}"</i></p>
 </div>
+<p style="font-size: 20px;"><i>Information</i></p>
 <hr>	
 <table>
 	<tr>
@@ -45,6 +46,29 @@
 		<td><strong>{{idolinfo.province}}</strong></td>
 	</tr>
 </table>
+<br>
+<br>
+<p style="font-size: 20px;"><i>Singles Participation</i></p>
+<hr>
+<div>
+	<table>
+		{% if idolinfo.idolsongsposition_set.all %}
+			{% for songs in idolinfo.idolsongsposition_set.all %}
+				<tr>
+					<td>
+						{{songs.songtitle}} 
+						{% if songs.position %}
+							({{songs.position}})
+						{% endif %}
+					</td>
+				</tr>
+			{% endfor %}
+		{% else %}
+			<p>wawang bata walang kanta</p>			
+		{% endif %}
+	</table>
+</div>
+<br>
 <div class="footer">
 	<a class="btn btn-dark" href="{% url 'welcome' %}" >Go Back to Top 4 List</a>
 	<a class="btn btn-dark" href="{% url 'idol_edit' pk=idolinfo.pk %}">Edit Idol info</a>

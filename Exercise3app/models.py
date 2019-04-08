@@ -1,9 +1,8 @@
-from django.db import models
 from django.core.validators import MaxValueValidator
+from django.db import models
 
 
 class IdolDetail(models.Model):
-
 	aboutme = models.TextField()
 	birthday = models.DateField()
 	city = models.CharField(max_length=20)
@@ -19,4 +18,19 @@ class IdolDetail(models.Model):
 
 	def __str__(self):
 		return self.namefirst + " " + self.namelast
-			
+	
+
+class SongData(models.Model):
+	title = models.CharField(max_length=100)
+
+	def __str__(self):
+		return self.title
+
+
+class IdolSongsPosition(models.Model):
+	idolsinger = models.ForeignKey(IdolDetail, on_delete=models.SET_NULL, null=True)
+	position = models.CharField(max_length=50, null=True, blank=True)
+	songtitle = models.ForeignKey(SongData, on_delete=models.SET_NULL, null=True)
+
+	def __str__(self):
+		return self.idolsinger.nickname + " - " + self.songtitle.title + " (" + (self.position or "") + ")"
